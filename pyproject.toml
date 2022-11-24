@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "mailganer"
+version = "0.1.0"
+description = ""
+authors = ["ilyashirko <ilyashirko@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^2.7"
+Django = "1.11"
+celery = "4.*"
+python-dotenv = "0.18.0"
+django-db-mailer = "^2.4.0"
+flake8 = "2.6.2"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

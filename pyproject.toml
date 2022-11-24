@@ -11,6 +11,7 @@ celery = "4.*"
 python-dotenv = "0.18.0"
 django-db-mailer = "^2.4.0"
 flake8 = "2.6.2"
+redis = "3.5.3"
 
 [tool.poetry.dev-dependencies]
 

@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from datetime import datetime
+
+import pytz
+        
 from django.contrib import admin
 
 from models import Message, Template
@@ -15,7 +19,11 @@ class TemplateAdmin(admin.ModelAdmin):
 
 @admin.register(Message)
 class MessageAdmin(admin.ModelAdmin):
-    
+    def get_eta(self, schedule):
+        utc = pytz.UTC
+        if datetime.now().replace(tzinfo=utc) < schedule.replace(tzinfo=utc):
+            return schedule
+
     def send_message(self, request, queryset):
         for message in queryset.prefetch_related('template', 'recipients'):
             with open('template.html', 'w') as template_file:
@@ -31,7 +39,10 @@ class MessageAdmin(admin.ModelAdmin):
                         'email': recipient.email
                     }
                 )
-            send_group.apply_async(args=[recipients_contexts, message.subject])
+            send_group.apply_async(
+                args=[recipients_contexts, message.subject],
+                eta=self.get_eta(message.send_time)
+            )
             message.is_sent = True
             message.save()
 

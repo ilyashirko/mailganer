@@ -124,6 +124,8 @@ EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 
 EMAIL_USE_SSL = bool(os.getenv('EMAIL_USE_SSL', 1))
 
+EMAIL_USE_TSL = bool(os.getenv('EMAIL_USE_TSL', 0))
+
 CELERY_BROKER_URL = "redis://localhost:6379"
 
 CELERY_RESULT_BACKEND = "redis://localhost:6379"

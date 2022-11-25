@@ -3,4 +3,6 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render
 
-# Create your views here.
+def letter_opened(request, subscriber_id, message_id):
+    # here we can process information about opened letters
+    pass

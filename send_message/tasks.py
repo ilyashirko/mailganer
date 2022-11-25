@@ -2,11 +2,11 @@ from __future__ import absolute_import
 
 import os
 
+from celery import shared_task
 from django.conf import settings
 from django.core.mail import get_connection
 from django.core.mail.message import  EmailMultiAlternatives
 from django.template import loader
-from celery import shared_task
 
 
 @shared_task

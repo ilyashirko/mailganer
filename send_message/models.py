@@ -21,6 +21,7 @@ class Message(models.Model):
         related_name='messages',
         on_delete=models.PROTECT
     )
+    send_time = models.DateTimeField('Время отправки')
     recipients = models.ManyToManyField(
         'subscribers.Subscriber',
         verbose_name='Получатели',
